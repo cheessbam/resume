@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>徐昊 · 作品集</title>
+  <meta name="description" content="徐昊的个人简历与作品集网站" />
+  <meta name="theme-color" content="#0f0f1a" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%236366f1'/%3E%3Cstop offset='.5' stop-color='%23a855f7'/%3E%3Cstop offset='1' stop-color='%23ec4899'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='32' cy='32' r='30' fill='url(%23g)'/%3E%3Ctext x='32' y='43' font-family='Arial' font-size='30' font-weight='bold' fill='white' text-anchor='middle'%3EX%3C/text%3E%3C/svg%3E" />
+
+  <!-- 字体（Google Fonts，部署后需联网加载；如需完全离线可删除本行，会自动回退系统字体） -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- 顶部滚动进度条 -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <!-- 预加载动画 -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader-inner">
+      <span class="preloader-name" id="preloaderName"></span>
+      <span class="preloader-bar"><span class="preloader-bar-fill" id="preloaderBarFill"></span></span>
+    </div>
+  </div>
+
+  <!-- 背景渐变光斑 -->
+  <div class="bg-blobs" id="bgBlobs" aria-hidden="true">
+    <span class="blob blob-1"></span>
+    <span class="blob blob-2"></span>
+    <span class="blob blob-3"></span>
+    <span class="blob blob-4"></span>
+  </div>
+
+  <!-- 自定义光标 -->
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+
+  <!-- 导航 -->
+  <header class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#home" class="nav-logo" id="navLogo"></a>
+      <nav class="nav-links" id="navLinks" aria-label="主导航"></nav>
+      <div class="nav-actions">
+        <button class="lang-toggle" id="langToggle" type="button" aria-label="切换语言">中 / EN</button>
+        <button class="nav-burger" id="navBurger" type="button" aria-label="打开菜单" aria-expanded="false">
+          <span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ============ 首屏 Hero ============ -->
+    <section class="hero" id="home">
+      <div class="hero-inner">
+        <p class="hero-greeting reveal" id="heroGreeting"></p>
+        <h1 class="hero-name">
+          <span class="hero-name-main reveal" id="heroName"></span>
+        </h1>
+        <div class="hero-roles reveal">
+          <span class="hero-role-static" id="heroRoleStatic"></span>
+          <span class="hero-role-type" id="heroRoleType"></span>
+          <span class="hero-role-caret" aria-hidden="true"></span>
+        </div>
+        <p class="hero-tagline reveal" id="heroTagline"></p>
+        <p class="hero-location reveal" id="heroLocation"></p>
+        <div class="hero-cta reveal" id="heroCta"></div>
+        <div class="hero-avatar-wrap reveal" id="heroAvatarWrap" aria-hidden="true"></div>
+      </div>
+      <a class="scroll-indicator" href="#about" id="scrollIndicator" aria-label="向下滚动">
+        <span class="scroll-indicator-mouse"><span class="scroll-indicator-dot"></span></span>
+        <span class="scroll-indicator-text" id="scrollIndicatorText"></span>
+      </a>
+    </section>
+
+    <!-- ============ 关于 ============ -->
+    <section class="section about" id="about">
+      <div class="section-inner">
+        <div class="section-head">
+          <span class="section-eyebrow" id="aboutEyebrow"></span>
+          <h2 class="section-title reveal" id="aboutTitle"></h2>
+        </div>
+        <div class="about-body">
+          <div class="about-text reveal" id="aboutText"></div>
+          <div class="about-highlights" id="aboutHighlights"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 经历 ============ -->
+    <section class="section experience" id="experience">
+      <div class="section-inner">
+        <div class="section-head">
+          <span class="section-eyebrow" id="experienceEyebrow"></span>
+          <h2 class="section-title reveal" id="experienceTitle"></h2>
+        </div>
+        <div class="timeline" id="timeline"></div>
+      </div>
+    </section>
+
+    <!-- ============ 技能 ============ -->
+    <section class="section skills" id="skills">
+      <div class="section-inner">
+        <div class="section-head">
+          <span class="section-eyebrow" id="skillsEyebrow"></span>
+          <h2 class="section-title reveal" id="skillsTitle"></h2>
+        </div>
+        <div class="skills-grid" id="skillsGrid"></div>
+        <div class="skills-cloud" id="skillsCloud"></div>
+      </div>
+    </section>
+
+    <!-- ============ 作品 ============ -->
+    <section class="section projects" id="projects">
+      <div class="section-inner">
+        <div class="section-head">
+          <span class="section-eyebrow" id="projectsEyebrow"></span>
+          <h2 class="section-title reveal" id="projectsTitle"></h2>
+        </div>
+        <div class="projects-filter" id="projectsFilter"></div>
+        <div class="projects-grid" id="projectsGrid"></div>
+      </div>
+    </section>
+
+    <!-- ============ 荣誉与证书 ============ -->
+    <section class="section certificates" id="certificates">
+      <div class="section-inner">
+        <div class="section-head">
+          <span class="section-eyebrow" id="certificatesEyebrow"></span>
+          <h2 class="section-title reveal" id="certificatesTitle"></h2>
+        </div>
+        <div class="certificates-grid" id="certificatesGrid"></div>
+      </div>
+    </section>
+
+    <!-- ============ 联系 ============ -->
+    <section class="section contact" id="contact">
+      <div class="section-inner">
+        <div class="section-head">
+          <span class="section-eyebrow" id="contactEyebrow"></span>
+          <h2 class="section-title reveal" id="contactTitle"></h2>
+        </div>
+        <p class="contact-intro reveal" id="contactIntro"></p>
+        <div class="contact-cards" id="contactCards"></div>
+        <div class="contact-socials" id="contactSocials"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <span class="footer-text" id="footerText"></span>
+      <span class="footer-name" id="footerName"></span>
+    </div>
+  </footer>
+
+  <!-- 图片全屏查看 -->
+  <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true">
+    <button class="lightbox-close" id="lightboxClose" type="button" aria-label="关闭">×</button>
+    <button class="lightbox-nav lightbox-prev" id="lightboxPrev" type="button" aria-label="上一张">‹</button>
+    <button class="lightbox-nav lightbox-next" id="lightboxNext" type="button" aria-label="下一张">›</button>
+    <figure class="lightbox-figure">
+      <img class="lightbox-img" id="lightboxImg" src="" alt="" />
+      <figcaption class="lightbox-caption" id="lightboxCaption"></figcaption>
+      <span class="lightbox-count" id="lightboxCount"></span>
+    </figure>
+  </div>
+
+  <script src="content.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
