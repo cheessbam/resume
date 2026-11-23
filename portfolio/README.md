@@ -1,4 +1,4 @@
-# 个人简历 · 作品集网站
+# 个人简历 · 作品集网站 https://probable-dollop-wvgg9gg677vwhg7gj-4173.app.github.dev/
 
 一个**零依赖、纯静态、中英双语、创意动效**的个人简历与作品集网站。
 打开 `index.html` 即可预览；部署到 GitHub Pages / Vercel / Netlify 即可上线。
